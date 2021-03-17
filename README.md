@@ -1,25 +1,8 @@
-# README
+# Jarishop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# jarishop2
+1. add user
+2. has admin 
+3. category weight for ordem mxxx for price before sale uuid for id(yearmonthday+four caract)
+4. product
+5. spec to test, it isnt functioning
+6. ancestry for family tree for category
