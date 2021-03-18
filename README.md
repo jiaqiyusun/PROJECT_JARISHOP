@@ -14,4 +14,6 @@ it is in chinese, do not forget change it
 
 # 18/03
 1. page admin add new category and add folha de um category
+   erro: delete dont function, why !!!!!!!! 
+   OK！ because ruby 6 remove the javascript_include_tag resolve!!!!
 

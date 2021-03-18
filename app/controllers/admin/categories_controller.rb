@@ -34,6 +34,8 @@ class Admin::CategoriesController < Admin::BaseController
     render action: :new
   end
 
+
+
   def update
     @category.attributes = params.require(:category).permit!
 
