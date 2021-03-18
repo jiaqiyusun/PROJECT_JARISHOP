@@ -25,7 +25,7 @@ gem 'font-awesome-rails'
 # user registion update and delete etc
 gem 'sorcery'
 gem 'ancestry'
-gem 'will_paaginate'
+gem 'will_paginate'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
