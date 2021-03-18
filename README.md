@@ -17,3 +17,10 @@ it is in chinese, do not forget change it
    erro: delete dont function, why !!!!!!!! 
    OK！ because ruby 6 remove the javascript_include_tag resolve!!!!
 
+2. <b>size nao sei fazer, pois um roupa poderia ter varios sizes e cada size poderia ter varios stock?????????
+   opcao 1: criamos varios sizes para atributo de product, e cada um tem seu stock, e tem um stock total.<b>
+
+3. product meio feita, falta fotos isso faço amanhã  
+
+
+
