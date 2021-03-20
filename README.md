@@ -22,5 +22,10 @@ it is in chinese, do not forget change it
 
 3. product meio feita, falta fotos isso faço amanhã  
 
+4. gem 'paperclip' for img ps etc 
+
+5. maybe need to install imageMagick if u do not have which convert
 
 
+# 20/03
+1. update create destrory image done 

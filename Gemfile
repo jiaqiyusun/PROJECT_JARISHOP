@@ -26,6 +26,7 @@ gem 'font-awesome-rails'
 gem 'sorcery'
 gem 'ancestry'
 gem 'will_paginate'
+gem 'paperclip', '~> 5.0.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

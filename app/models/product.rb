@@ -22,9 +22,12 @@ class Product < ApplicationRecord
 
 belongs_to :category
 
+has_many :product_images, -> { order(weight: 'desc') },
+    dependent: :destroy
+    
 before_create :set_default_attrs
 
-module status
+module Status
     On = 'on'
     Off = 'off'
 end
