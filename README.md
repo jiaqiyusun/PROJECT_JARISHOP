@@ -29,3 +29,4 @@ it is in chinese, do not forget change it
 
 # 20/03
 1. update create destrory image done 
+2. faz a parte de index
