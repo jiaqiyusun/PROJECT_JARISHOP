@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_203956) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2021_03_21_024738) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -26,8 +23,24 @@ ActiveRecord::Schema.define(version: 2021_03_20_203956) do
     t.index ["title"], name: "index_categories_on_title"
   end
 
+  create_table "colors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_colors", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "color_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
+    t.index ["color_id"], name: "index_product_colors_on_color_id"
+    t.index ["product_id"], name: "index_product_colors_on_product_id"
+  end
+
   create_table "product_images", force: :cascade do |t|
-    t.bigint "product_id"
+    t.integer "product_id"
     t.integer "weight", default: 0
     t.string "image_file_name"
     t.string "image_content_type"
@@ -37,6 +50,16 @@ ActiveRecord::Schema.define(version: 2021_03_20_203956) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id", "weight"], name: "index_product_images_on_product_id_and_weight"
     t.index ["product_id"], name: "index_product_images_on_product_id"
+  end
+
+  create_table "product_sizes", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "size_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_sizes_on_product_id"
+    t.index ["size_id"], name: "index_product_sizes_on_size_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -55,6 +78,12 @@ ActiveRecord::Schema.define(version: 2021_03_20_203956) do
     t.index ["status", "category_id"], name: "index_products_on_status_and_category_id"
     t.index ["title"], name: "index_products_on_title"
     t.index ["uuid"], name: "index_products_on_uuid", unique: true
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,4 +107,7 @@ ActiveRecord::Schema.define(version: 2021_03_20_203956) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
+  add_foreign_key "product_colors", "colors"
+  add_foreign_key "product_sizes", "products"
+  add_foreign_key "product_sizes", "sizes"
 end

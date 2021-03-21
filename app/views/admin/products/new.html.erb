@@ -40,23 +40,32 @@
         </select>
       </div>
     </div>
+    
+    
     <div class="form-group">
       <label for="title" class="col-sm-2 control-label">尺寸:*</label>
       <div class="col-sm-5">
         <select name="product[size]">
-          <% [['XS', 'XS'], ['S', 'S'], ['M', 'M'],['L', 'L'],['XL', 'XL']].each do |row| %>
+          <% @sizes.each do |row| %>
             <option value="<%= row.first %>" <%= 'selected' if @product.size == row.first %>><%= row.last %></option>
           <% end -%>
         </select>
       </div>
     </div>
-    
+    <div class="form-group">
+      <label for="title" class="col-sm-2 control-label">Sizes:*</label>
+      <div class="col-sm-5">
+        
+      </div>
+    </div>
     <div class="form-group">
       <label for="status" class="col-sm-2 control-label">上下架状态:*</label>
       <div class="col-sm-5">
         <select name="product[status]">
-          <% [[Product::Status::On, '上架'], [Product::Status::Off, '下架']].each do |row| %>
-            <option value="<%= row.first %>" <%= 'selected' if @product.status == row.first %>><%= row.last %></option>
+          <% @status.each do |row| %>
+            <option value="<%= row.first %>"
+              <%= 'selected' if @product.status == row.first %>><%= row.last %>
+            </option>
           <% end -%>
         </select>
       </div>
