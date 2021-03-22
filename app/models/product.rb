@@ -1,9 +1,10 @@
 class Product < ApplicationRecord
   
-  serialize :ProductColors
   # Relactions
   belongs_to :category
-  has_many :ProductColors
+  has_many :product_colors, inverse_of: :product
+  accepts_nested_attributes_for :product_colors, allow_destroy: true, reject_if: :all_blank
+
   has_many :product_images, -> { order(weight: 'desc') },
       dependent: :destroy
       

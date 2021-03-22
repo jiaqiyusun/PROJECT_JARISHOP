@@ -4,15 +4,13 @@
     <title>管理平台 - 蛋人商城</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'admin', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= yield :stylesheets %>
-    <% if Rails::VERSION::STRING[0].to_f < 6 %>
-      <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
-    <% else %>
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% end %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= javascript_pack_tag 'hello', 'data-turbolinks-track': 'reload', rel: 'preload', defer: true %>
   </head>
 
   <body>

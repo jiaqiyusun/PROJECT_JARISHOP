@@ -9,6 +9,7 @@ class Admin::ProductsController < Admin::BaseController
   
     def new
       @product = Product.new
+      @product.product_colors.build
       @root_categories = Category.roots
       @colors = Color.all
       @status = [[Product::Status::On, '上架'], [Product::Status::Off, '下架']]
