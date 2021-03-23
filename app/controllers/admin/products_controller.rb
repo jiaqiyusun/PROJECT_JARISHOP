@@ -9,13 +9,17 @@ class Admin::ProductsController < Admin::BaseController
   
     def new
       @product = Product.new
+      @product.product_colors.build
       @root_categories = Category.roots
+      @colors = Color.all
+      @status = [[Product::Status::On, '上架'], [Product::Status::Off, '下架']]
+      @sizes = [['XS', 'XS'], ['S', 'S'], ['M', 'M'],['L', 'L'],['XL', 'XL']]
     end
   
     def create
       @product = Product.new(params.require(:product).permit!)
       @root_categories = Category.roots
-  
+      
       if @product.save
         flash[:notice] = "创建成功"
         redirect_to admin_products_path
@@ -54,5 +58,4 @@ class Admin::ProductsController < Admin::BaseController
     def find_product
       @product = Product.find(params[:id])
     end
-  
   end

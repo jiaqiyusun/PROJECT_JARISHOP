@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2021_03_22_220625) do
     t.index ["title"], name: "index_categories_on_title"
   end
 
+  create_table "colors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_colors", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "color_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
+    t.index ["color_id"], name: "index_product_colors_on_color_id"
+    t.index ["product_id"], name: "index_product_colors_on_product_id"
+  end
+
   create_table "product_images", force: :cascade do |t|
     t.bigint "product_id"
     t.integer "weight", default: 0
@@ -37,6 +53,16 @@ ActiveRecord::Schema.define(version: 2021_03_22_220625) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id", "weight"], name: "index_product_images_on_product_id_and_weight"
     t.index ["product_id"], name: "index_product_images_on_product_id"
+  end
+
+  create_table "product_sizes", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "size_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_sizes_on_product_id"
+    t.index ["size_id"], name: "index_product_sizes_on_size_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -68,6 +94,12 @@ ActiveRecord::Schema.define(version: 2021_03_22_220625) do
     t.index ["user_uuid"], name: "index_shopping_carts_on_user_uuid"
   end
 
+  create_table "sizes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -91,4 +123,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_220625) do
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
+  add_foreign_key "product_colors", "colors"
+  add_foreign_key "product_sizes", "products"
+  add_foreign_key "product_sizes", "sizes"
 end

@@ -1,3 +1,4 @@
+
 <div>
   <h1><%= @product.new_record? ? "新建商品" : "修改商品 ##{params[:id]}" %></h1>
 </div>
@@ -40,23 +41,40 @@
         </select>
       </div>
     </div>
+    
+    
     <div class="form-group">
       <label for="title" class="col-sm-2 control-label">尺寸:*</label>
       <div class="col-sm-5">
         <select name="product[size]">
-          <% [['XS', 'XS'], ['S', 'S'], ['M', 'M'],['L', 'L'],['XL', 'XL']].each do |row| %>
+          <% @sizes.each do |row| %>
             <option value="<%= row.first %>" <%= 'selected' if @product.size == row.first %>><%= row.last %></option>
           <% end -%>
         </select>
       </div>
     </div>
-    
+
+    <div class="form-group">
+      <label for="title" class="col-sm-2 control-label"></label>
+      <div class="col-sm-5">
+        <fieldset>
+            <legend>Colors:</legend>
+            <%= f.fields_for :product_colors do |color_form| %>
+              <%= render "product_color_fields", f: color_form %>
+            <% end %>
+            <%= link_to_add_fields "Add Color", f, :product_colors %>
+        </fieldset>
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="status" class="col-sm-2 control-label">上下架状态:*</label>
       <div class="col-sm-5">
         <select name="product[status]">
-          <% [[Product::Status::On, '上架'], [Product::Status::Off, '下架']].each do |row| %>
-            <option value="<%= row.first %>" <%= 'selected' if @product.status == row.first %>><%= row.last %></option>
+          <% @status.each do |row| %>
+            <option value="<%= row.first %>"
+              <%= 'selected' if @product.status == row.first %>><%= row.last %>
+            </option>
           <% end -%>
         </select>
       </div>

@@ -6,9 +6,18 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
+
 require("bootstrap-sprockets")
 require("packs/home")
 
+require('turbolinks').start()
+// app/javascript/packs/application.js
+require('./nested-forms/addFields')
+require('./nested-forms/removeFields')
+
+
+//require("packs/example");
+// app/javascript/packs/application.js
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -16,3 +25,4 @@ require("packs/home")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+// app/javascript/packs/nested-forms/addFields.js
