@@ -2,8 +2,8 @@ class Product < ApplicationRecord
   
   # Relactions
   belongs_to :category
-  has_many :product_colors, inverse_of: :product
-  accepts_nested_attributes_for :product_colors, allow_destroy: true, reject_if: :all_blank
+  has_many :product_characteristics, inverse_of: :product
+  accepts_nested_attributes_for :product_characteristics, allow_destroy: true, reject_if: :all_blank
 
   has_many :product_images, -> { order(weight: 'desc') },
       dependent: :destroy
@@ -16,8 +16,7 @@ class Product < ApplicationRecord
   # Validations
   validates :category_id, presence: { message: "分类不能为空" }
   validates :title, presence: { message: "名称不能为空" }
-  validates :size, inclusion: { in: %w[XS S M L XL], 
-      message: "商品大小须为XS S M L XL" }
+  
   validates :status, inclusion: { in: %w[on off], 
     message: "商品状态必须为on | off" }
   validates :amount, numericality: { only_integer: true,

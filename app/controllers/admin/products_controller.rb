@@ -9,15 +9,18 @@ class Admin::ProductsController < Admin::BaseController
   
     def new
       @product = Product.new
-      @product.product_colors.build
+      @colors = []
+      @product.product_characteristics.build
       @root_categories = Category.roots
-      @colors = Color.all
+      @colors = select_option Color
+      @sizes =  select_option Size
+      
       @status = [[Product::Status::On, '上架'], [Product::Status::Off, '下架']]
-      @sizes = [['XS', 'XS'], ['S', 'S'], ['M', 'M'],['L', 'L'],['XL', 'XL']]
+      
     end
   
     def create
-      @product = Product.new(params.require(:product).permit!)
+      @product = Product.new(params_product)
       @root_categories = Category.roots
       
       if @product.save
@@ -57,5 +60,20 @@ class Admin::ProductsController < Admin::BaseController
     private
     def find_product
       @product = Product.find(params[:id])
+    end
+
+    def params_product
+      params.require(:product).permit(
+        :category_id, :title, :amount, :uuid, :msrp, :price, :description,
+        :product_characteristics_attributes => [:size_id, :color_id, :amount]
+      )
+    end
+
+    def select_option model_s
+      colec =[]
+      model_s.select(:id, :name).each do |single|
+        colec << [ single.name, single.id ]
+      end
+      colec
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_024738) do
+ActiveRecord::Schema.define(version: 2021_03_28_062732) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
@@ -29,14 +29,16 @@ ActiveRecord::Schema.define(version: 2021_03_21_024738) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "product_colors", force: :cascade do |t|
-    t.integer "product_id"
+  create_table "product_characteristics", force: :cascade do |t|
+    t.integer "product_id", null: false
     t.integer "color_id", null: false
+    t.integer "size_id", null: false
+    t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "amount"
-    t.index ["color_id"], name: "index_product_colors_on_color_id"
-    t.index ["product_id"], name: "index_product_colors_on_product_id"
+    t.index ["color_id"], name: "index_product_characteristics_on_color_id"
+    t.index ["product_id"], name: "index_product_characteristics_on_product_id"
+    t.index ["size_id"], name: "index_product_characteristics_on_size_id"
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -50,16 +52,6 @@ ActiveRecord::Schema.define(version: 2021_03_21_024738) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id", "weight"], name: "index_product_images_on_product_id_and_weight"
     t.index ["product_id"], name: "index_product_images_on_product_id"
-  end
-
-  create_table "product_sizes", force: :cascade do |t|
-    t.integer "product_id", null: false
-    t.integer "size_id", null: false
-    t.integer "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_product_sizes_on_product_id"
-    t.index ["size_id"], name: "index_product_sizes_on_size_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -84,6 +76,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_024738) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id", null: false
+    t.index ["category_id"], name: "index_sizes_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -107,7 +101,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_024738) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
-  add_foreign_key "product_colors", "colors"
-  add_foreign_key "product_sizes", "products"
-  add_foreign_key "product_sizes", "sizes"
+  add_foreign_key "product_characteristics", "colors"
+  add_foreign_key "product_characteristics", "products"
+  add_foreign_key "product_characteristics", "sizes"
+  add_foreign_key "sizes", "categories"
 end
