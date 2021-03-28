@@ -6,6 +6,10 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
+
+require("bootstrap-sprockets")
+require("packs/home")
+
 require('turbolinks').start()
 // app/javascript/packs/application.js
 require('./nested-forms/addFields')

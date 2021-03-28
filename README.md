@@ -30,3 +30,9 @@ it is in chinese, do not forget change it
 # 20/03
 1. update create destrory image done 
 2. faz a parte de index
+
+
+# 22/03
+1. carrinha - shopping_carts
+            user_id se existir um user
+            user_uuid se não existir user, dá um user pervisoria

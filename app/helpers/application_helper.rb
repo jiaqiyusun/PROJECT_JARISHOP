@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+    def show_add_to_cart product, options = {}
+        html_class = "btn btn-danger add-to-cart-btn"
+        html_class += " #{options[:html_class]}" unless options[:html_class].blank?
+    
+        link_to "<i class='fa fa-spinner'></i> 加入购物车".html_safe, shopping_carts_path,
+        class: html_class, 'data-product-id': product.id
+    end
+
     def link_to_add_fields(name, f, association)
 
         # Takes an object (@person) and creates a new instance of its associated model (:addresses)
@@ -35,6 +43,7 @@ module ApplicationHelper
             # We use `gsub("\n", "")` to remove anywhite space from the rendered partial.
         # The `id:` value needs to match the value used in `child_index: id`.
         link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+
 
     end
 end
