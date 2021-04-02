@@ -9,20 +9,81 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= yield :stylesheets%>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- CSS
+    ============================================ -->
+    <!-- Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome CSS -->
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Ionicons CSS -->
+    <link href="assets/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Themify CSS -->
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+    <!-- Plugins CSS -->
+    <link href="assets/css/plugins.css" rel="stylesheet">
+
+    <!-- Helper CSS -->
+    <link href="assets/css/helper.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <!-- Revolution Slider CSS -->
+    <link href="assets/revolution/css/settings.css" rel="stylesheet">
+    <link href="assets/revolution/css/navigation.css" rel="stylesheet">
+    <link href="assets/revolution/custom-setting.css" rel="stylesheet">
+
+
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
   </head>
 
   <body>
-  <%= render 'layouts/menu' %>
-  <div class="container" >
-      <% unless flash[:notice].blank? %>
+  <% unless flash[:notice].blank? %>
         <div class="alert alert-info"><%= flash[:notice] %></div>
       <% end -%>
-      
-    <%= yield %>
-  </div>
+  <%= render 'layouts/menu' %>
+  <%= yield %>
 
 
-  
+  	<!-- jQuery JS -->
+	<script src="assets/js/vendor/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="assets/js/popper.min.js"></script>
+
+	<!-- Bootstrap JS -->
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Plugins JS -->
+	<script src="assets/js/plugins.js"></script>
+
+	<!-- Main JS -->
+	<script src="assets/js/main.js"></script>
+
+	<!-- Revolution Slider JS -->
+	<script src="assets/revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="assets/revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script src="assets/revolution/revolution-active.js"></script>
+
+
+	<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+	<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+	<script type="text/javascript"
+		src="assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script type="text/javascript" src="assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+
   </body>
+
 </html>
