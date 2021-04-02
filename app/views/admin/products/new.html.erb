@@ -1,3 +1,4 @@
+<%= content_tag :div, '', id: 'mycontainer', data: { source: @sizes } %>
 
 <div>
   <h1><%= @product.new_record? ? "新建商品" : "修改商品 ##{params[:id]}" %></h1>
@@ -21,7 +22,7 @@
 
 
     <div class="form-group">
-      <label for="title" class="col-sm-2 control-label">名称:*</label>
+      <label for="title" class="col-sm-2 control-label">Nome:*</label>
       <div class="col-sm-5">
         <%= f.text_field :title, class: "form-control" %>
       </div>
@@ -100,3 +101,4 @@
     </div>
   <% end -%>
 </div>
+

@@ -13,9 +13,14 @@ class Admin::ProductsController < Admin::BaseController
       @product.product_characteristics.build
       @root_categories = Category.roots
       @colors = select_option Color
-      @sizes =  select_option Size
+      #@sizes =  select_option Size
+      @sizes =  []
       
-      @status = [[Product::Status::On, '上架'], [Product::Status::Off, '下架']]
+      Size.select(:id, :name, :category_id).each do |single|
+        @sizes << [ single.name, single.category_id ]
+      end
+      
+      @status = [[Product::Status::On, 'Active'], [Product::Status::Off, 'Inactive']]
       
     end
   
